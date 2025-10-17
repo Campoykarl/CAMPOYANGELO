@@ -1,0 +1,227 @@
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #007bff, #002b80);
+  color: white;
+  line-height: 1.6;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 4rem;
+  background: rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.logo-text h1 {
+  font-size: 1.4rem;
+}
+
+.logo-text p {
+  font-size: 0.8rem;
+  color: #ddd;
+}
+
+nav a {
+  margin-left: 2rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ff7b00;
+}
+
+/* HERO SECTION */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 5rem;
+  min-height: 90vh;
+  background: linear-gradient(to right, #0052cc, #007bff);
+}
+
+.hero-content {
+  max-width: 50%;
+}
+
+.hero-content h2 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  color: #ff7b00;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin-bottom: 2rem;
+}
+
+/* BOOKING FORM */
+.booking-form {
+  display: flex;
+  align-items: center;
+  background: white;
+  color: black;
+  border-radius: 10px;
+  padding: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 150px;
+}
+
+.input-group label {
+  font-size: 0.8rem;
+  color: gray;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.input-group input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.book-btn {
+  background-color: #ff7b00;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.6rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.book-btn:hover {
+  background-color: #e86d00;
+}
+
+/* HERO IMAGE */
+.hero-image img {
+  width: 600px;
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* SCROLL CONTENT */
+.info-section {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4rem 6rem;
+  text-align: center;
+}
+
+.info-section h3 {
+  font-size: 2rem;
+  color: #ffb84d;
+  margin-bottom: 1rem;
+}
+
+.info-section p {
+  max-width: 800px;
+  margin: 0.5rem auto;
+  color: #f0f0f0;
+}
+
+/* FOOTER */
+footer {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 3rem 2rem 1rem;
+  color: white;
+  margin-top: 3rem;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.footer-left, .footer-middle, .footer-right {
+  flex: 1;
+  min-width: 200px;
+}
+
+.socials a {
+  margin: 0 5px;
+  font-size: 1.5rem;
+  color: #ff7b00;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .booking-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-image {
+    margin-top: 2rem;
+  }
+
+  .info-section {
+    padding: 2rem;
+  }
+
+  header {
+    flex-direction: column;
+  }
+}
