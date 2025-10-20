@@ -1,15 +1,26 @@
-// Handle booking form
-document.getElementById("bookingForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+document.addEventListener('DOMContentLoaded', function () {
+  const bookNowBtn = document.getElementById('bookNowBtn');
 
-  const from = document.getElementById("from").value;
-  const to = document.getElementById("to").value;
-  const date = document.getElementById("date").value;
+  if (bookNowBtn) {
+    bookNowBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      // open booking page in the same tab
+      window.location.href = 'booking.html';
+    });
+  }
 
-  alert(`Booking Details:
-  From: ${from}
-  To: ${to}
-  Date: ${date}`);
+  // existing booking-details form handler (kept for backwards compatibility if used)
+  const bookingDetails = document.getElementById('bookingDetails');
+  const bookingForm = document.getElementById('bookingDetailsForm');
 
-  console.log({ from, to, date });
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const from = bookingForm.querySelector('#from')?.value || '';
+      const to = bookingForm.querySelector('#to')?.value || '';
+      const date = bookingForm.querySelector('#date')?.value || '';
+      alert(`Booking Details:\nFrom: ${from}\nTo: ${to}\nDate: ${date}`);
+      console.log({ from, to, date });
+    });
+  }
 });

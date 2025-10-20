@@ -61,9 +61,10 @@ nav a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3rem 5rem;
+  padding: 3rem 5rem 8rem;
   min-height: 90vh;
   background: linear-gradient(to right, #0052cc, #007bff);
+  position: relative;
 }
 
 .hero-content {
@@ -87,15 +88,69 @@ nav a:hover {
   margin-bottom: 2rem;
 }
 
+/* polished booking-card CTA */
+.booking-card {
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  transform: translateX(-50%);
+  width: min(1100px, 92%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(2, 6, 23, 0.18);
+  z-index: 20;
+}
+
+/* remove default button/anchor artifacts and create pill CTA */
+.booking-card button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.booking-card a,
+.booking-card a:link,
+.booking-card a:visited {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(90deg, #ff7b00 0%, #ff9b3a 100%);
+  padding: 0.7rem 1.6rem;
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  box-shadow: 0 8px 20px rgba(255,123,0,0.18);
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s;
+  font-size: 1rem;
+}
+
+/* hover / focus */
+.booking-card a:hover,
+.booking-card a:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(255,123,0,0.22);
+  opacity: 0.98;
+  outline: none;
+}
+
+/* ensure anchor inside button doesn't break layout */
+.booking-card button a { line-height: 1; }
+
 /* BOOKING FORM */
 .booking-form {
   display: flex;
   align-items: center;
-  background: white;
-  color: black;
-  border-radius: 10px;
-  padding: 1rem;
-  gap: 1rem;
+  background: transparent;
+  color: inherit;
+  border-radius: 0;
+  padding: 0;
+  gap: 0;
+  width: 100%;
   flex-wrap: wrap;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -120,24 +175,78 @@ nav a:hover {
   border-radius: 6px;
 }
 
+/* each segment inside the booking card */
+.booking-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1rem;
+  flex: 1;
+  min-width: 150px;
+  border-right: 1px solid rgba(0,0,0,0.06);
+}
+
+/* last item (button) - no separator */
+.booking-item:last-child {
+  border-right: none;
+  flex: 0 0 auto;
+}
+
+/* hide small labels (keep accessibility if needed with sr-only) */
+.booking-item label {
+  display: none;
+}
+
+/* inline control styling */
+.booking-item .input-inline {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  width: 100%;
+}
+
+/* small icon box to mimic screenshot */
+.booking-item .icon {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,123,255,0.08);
+  color: #007bff;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* inputs/selects inside the horizontal form */
+.booking-item input,
+.booking-item select {
+  border: none;
+  padding: 0.45rem 0.5rem;
+  font-size: 0.95rem;
+  outline: none;
+  background: transparent;
+  color: #222;
+  width: 100%;
+}
+
+/* prominent CTA button */
 .book-btn {
   background-color: #ff7b00;
   color: white;
-  font-weight: bold;
+  font-weight: 700;
   border: none;
   border-radius: 8px;
-  padding: 0.8rem 1.6rem;
+  padding: 0.75rem 1.25rem;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: transform .12s ease, box-shadow .12s ease;
+  box-shadow: 0 6px 18px rgba(255,123,0,0.18);
 }
-
-.book-btn:hover {
-  background-color: #e86d00;
-}
+.book-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,123,0,0.20); }
 
 /* HERO IMAGE */
 .hero-image img {
-  width: 600px;
+  width: 1050px;
   max-width: 100%;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
@@ -197,25 +306,88 @@ footer {
   font-size: 0.9rem;
 }
 
+/* booking-details section (the next "tab") */
+.booking-details {
+  background: rgba(255,255,255,0.03);
+  padding: 1.25rem;
+  margin: 2rem auto;
+  width: min(1100px, 94%);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  color: #fff;
+}
+
+/* when hidden attribute is present it's not shown; keep accessible */
+.booking-details[hidden] { display: none; }
+
+/* basic layout for the form inside the booking-details area */
+.booking-details .booking-form {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #222;
+  background: transparent;
+  padding: 0;
+}
+
+.booking-details .booking-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 160px;
+  border: none;
+  background: rgba(255,255,255,0.06);
+  padding: 0.6rem;
+  border-radius: 8px;
+  color: #222;
+}
+
+.booking-details .booking-item input {
+  border: none;
+  padding: 0.45rem;
+  border-radius: 6px;
+  outline: none;
+}
+
+/* keep CTA style consistent */
+.booking-details .book-btn { background: #ff7b00; color: #fff; }
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hero {
     flex-direction: column;
     text-align: center;
+    padding-bottom: 2rem;
   }
 
   .hero-content {
     max-width: 100%;
   }
 
-  .booking-form {
-    flex-direction: column;
-    align-items: stretch;
+  .booking-card {
+    position: static;
+    transform: none;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    margin-top: 1.25rem;
+    border-radius: 10px;
   }
 
-  .hero-image {
-    margin-top: 2rem;
+  .booking-form {
+    flex-direction: column;
+    gap: 0;
   }
+
+  .booking-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 0.75rem;
+    width: 100%;
+  }
+
+  .booking-item:last-child { border-bottom: none; }
 
   .info-section {
     padding: 2rem;
