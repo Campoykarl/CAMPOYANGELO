@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YourAirlines | Book Your Flight</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body { background: linear-gradient(135deg,#007bff,#002b80); color: #222; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+
+    header { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: rgba(255, 255, 255, 0.1); }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { width: 50px; height: 50px; border-radius: 50%; }
+    .logo-text h1 { margin: 0; font-size: 24px; color: #fff; }
+    .logo-text p { margin: 0; font-size: 14px; color: #ddd; }
+    nav { display: flex; gap: 20px; }
+    nav a { color: #fff; text-decoration: none; font-weight: bold; }
+
+    .hero { display: flex; align-items: center; justify-content: space-between; padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
+    .hero-content { flex: 1; color: #fff; }
+    .hero-content h2 { font-size: 36px; margin-bottom: 20px; }
+    .hero-content p { font-size: 18px; margin-bottom: 30px; }
+    .booking-card button { background: #ff7b00; color: #fff; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; }
+    .booking-card button a { color: inherit; text-decoration: none; }
+    .hero-image { flex: 1; text-align: center; }
+    .hero-image img { max-width: 100%; height: auto; }
+
+    .info-section { padding: 40px 20px; text-align: center; color: #fff; max-width: 1200px; margin: 0 auto; }
+    .info-section h3 { font-size: 28px; margin-bottom: 20px; }
+    .info-section p { font-size: 16px; line-height: 1.6; }
+
+    footer { background: rgba(0, 0, 0, 0.8); color: #fff; padding: 20px; }
+    .footer-container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .footer-left, .footer-middle, .footer-right { flex: 1; text-align: center; }
+    .footer-middle p { margin: 5px 0; }
+    .socials { display: flex; justify-content: center; gap: 10px; font-size: 20px; }
+    .footer-bottom { text-align: center; margin-top: 20px; border-top: 1px solid #444; padding-top: 10px; }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 10px; padding: 15px; }
+      nav { gap: 15px; }
+      .hero { flex-direction: column; text-align: center; padding: 20px; }
+      .hero-content h2 { font-size: 28px; }
+      .hero-content p { font-size: 16px; }
+      .booking-card button { padding: 12px 24px; font-size: 14px; }
+      .info-section { padding: 20px; }
+      .info-section h3 { font-size: 24px; }
+      .info-section p { font-size: 14px; }
+      .footer-container { flex-direction: column; gap: 20px; }
+      .footer-left, .footer-middle, .footer-right { text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      header { padding: 10px; }
+      .logo img { width: 40px; height: 40px; }
+      .logo-text h1 { font-size: 20px; }
+      .logo-text p { font-size: 12px; }
+      nav { flex-direction: column; gap: 10px; }
+      .hero { padding: 15px; }
+      .hero-content h2 { font-size: 24px; }
+      .hero-content p { font-size: 14px; }
+      .booking-card button { padding: 10px 20px; font-size: 13px; }
+      .info-section { padding: 15px; }
+      .info-section h3 { font-size: 20px; }
+      .info-section p { font-size: 13px; }
+      footer { padding: 15px; }
+      .footer-container { gap: 15px; }
+      .socials { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <header>
+    <div class="logo">
+      <img src="../image/pic.jpg" alt="Logo">
+      <div class="logo-text">
+        <h1>Flyhigh Butterfly</h1>
+        <p>Sakay na kamo para kamo ay lumilipad</p>
+      </div>
+    </div>
+    <nav>
+      <a href="#">SERVICES</a>
+      <a href="#">BOOK FLIGHT</a>
+      <a href="#">CAREER</a>
+      <a href="#">CONTACT US</a>
+    </nav>
+  </header>
+
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>BOOK YOUR <span class="highlight">SMOOTH</span><br>TAKEOFF TODAY!</h2>
+      <p>Lorem ipsum dolor sit amet consectetur. Egestas cursus a consequat velit. 
+         Sapien purus porta mattis odio eu augue vitae faucibus.</p>
+
+
+      <div class="booking-card">
+       <button><a href="booking.html" class="active">Book A Flight</a></button>
+      </div>
+
+    
+      <section id="bookingDetails" class="booking-details" hidden>
+        <form id="bookingDetailsForm" class="booking-form" aria-label="Booking details">
+          <div class="booking-item">
+            <label for="from">From</label>
+            <input id="from" name="from" type="text" placeholder="From (e.g. Jakarta)" required>
+          </div>
+
+          <div class="booking-item">
+            <label for="to">To</label>
+            <input id="to" name="to" type="text" placeholder="To (e.g. Barcelona)" required>
+          </div>
+
+          <div class="booking-item">
+            <label for="date">Date</label>
+            <input id="date" name="date" type="text" placeholder="22 Nov 2024 - 1 Dec 2024" required>
+          </div>
+
+          <div class="booking-item">
+            <button type="submit" class="book-btn">Submit Booking</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div class="hero-image">
+      <img src="../image/pic.jpg" alt="Airplane flying">
+    </div>
+  </section>
+
+
+  <section class="info-section">
+    <h3>Discover the World with YourAirlines</h3>
+    <p>From vibrant cities to breathtaking destinations, our global network connects you to more than 200 cities worldwide. 
+      Experience the comfort, luxury, and world-class service that make us your best travel companion.</p>
+    <p>Book your next adventure today and enjoy exclusive fares, premium service, and a journey to remember.</p>
+  </section>
+
+ 
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <h3>YourAirlines</h3>
+        <p>Connecting the world, one flight at a time.</p>
+      </div>
+
+      <div class="footer-middle">
+        <p><strong>Contact:</strong> campoyangelo@gmail.com</p>
+        <p><strong>Phone:</strong> +639107922772</p>
+      </div>
+
+      <div class="footer-right">
+        <p>Follow us:</p>
+        <div class="socials">
+          <a href="#">🌐</a>
+          <a href="#">📘</a>
+          <a href="#">🐦</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 YourAirlines. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Note: The booking form is handled in main.js, and the main booking is on booking.html
+    // This script is redundant as the form is hidden and not used.
+  </script>
+</body>
+</html>

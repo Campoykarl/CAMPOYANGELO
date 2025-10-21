@@ -397,3 +397,117 @@ footer {
     flex-direction: column;
   }
 }
+
+/* Additional responsive improvements */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem 2rem;
+  }
+
+  .logo-text h1 {
+    font-size: 1.2rem;
+  }
+
+  nav a {
+    margin-left: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    padding: 2rem 2rem 4rem;
+  }
+
+  .hero-content h2 {
+    font-size: 2.2rem;
+  }
+
+  .hero-image img {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .info-section {
+    padding: 2rem 1rem;
+  }
+
+  .info-section h3 {
+    font-size: 1.5rem;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .socials a {
+    margin: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0.5rem 1rem;
+  }
+
+  .logo img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-text h1 {
+    font-size: 1rem;
+  }
+
+  .logo-text p {
+    font-size: 0.7rem;
+  }
+
+  nav a {
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .hero {
+    padding: 1rem 1rem 3rem;
+  }
+
+  .hero-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+
+  .booking-card {
+    padding: 0.5rem;
+  }
+
+  .booking-item {
+    padding: 0.5rem;
+    min-width: 100%;
+  }
+
+  .book-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .info-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .info-section h3 {
+    font-size: 1.3rem;
+  }
+
+  .footer-container {
+    gap: 1rem;
+  }
+
+  .footer-left h3,
+  .footer-middle p,
+  .footer-right p {
+    font-size: 0.9rem;
+  }
+}

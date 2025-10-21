@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Booking — YourAirlines</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    :root { --accent:#ff7b00; --bg:#f7f8fb; --card:#fff; --muted:#666; }
+    body { background: linear-gradient(135deg,#007bff,#002b80); font-family: Poppins, sans-serif; -webkit-font-smoothing:antialiased; color:#222; margin:24px; }
+    .container { max-width: 1000px; margin: 24px auto; background:var(--card); border-radius:12px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.18); }
+    .header { padding:18px 24px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center; }
+    .steps { display:flex; gap:12px; align-items:center; font-size:14px; color:var(--muted); }
+    .step { padding:8px 12px; border-radius:999px; background:rgba(0,0,0,0.03); display:flex; gap:8px; align-items:center; }
+    .step.active { background:linear-gradient(90deg,var(--accent),#ff9b3a); color:#fff; font-weight:700; }
+    main { padding:22px; background: linear-gradient(180deg, #fff, #fafafa); }
+    section.step-panel { display:none; }
+    section.step-panel.active { display:block; }
+
+    /* Booking Details form */
+    .form-grid { display:flex; gap:12px; flex-wrap:wrap; }
+    .field { flex:1 1 220px; display:flex; flex-direction:column; gap:6px; }
+    input[type="text"], input[type="email"], select, input[type="date"] { padding:10px 12px; border-radius:8px; border:1px solid #ddd; background:#fff; }
+    .radio-group { display:flex; gap:12px; align-items:center; }
+    .btn { background:var(--accent); color:#fff; padding:10px 16px; border-radius:8px; border:0; cursor:pointer; font-weight:700; }
+    .btn.ghost { background:transparent; color:var(--accent); border:1px solid rgba(0,0,0,0.06); }
+
+    /* Flights listing */
+    .flights { display:flex; flex-direction:column; gap:12px; margin-top:12px; }
+    .flight-card { display:flex; justify-content:space-between; align-items:center; padding:12px; border-radius:10px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,0.06); border:1px solid rgba(0,0,0,0.03); }
+    .flight-info { display:flex; gap:14px; align-items:center; }
+    .flight-meta { color:var(--muted); font-size:13px; }
+    .flight-right { text-align:right; display:flex; flex-direction:column; gap:6px; align-items:flex-end; }
+    .price { font-weight:800; font-size:18px; color:var(--accent); }
+
+    /* Passengers form */
+    .passenger { padding:12px; border-radius:8px; background:#fff; border:1px solid #eee; display:flex; gap:12px; align-items:center; }
+    .passenger input { width:100%; }
+
+    /* Summary */
+    .summary { display:flex; gap:12px; flex-direction:column; }
+    .summary .row { display:flex; justify-content:space-between; gap:12px; padding:8px 0; border-bottom:1px dashed #eee; }
+    .final { display:flex; justify-content:space-between; align-items:center; margin-top:12px; }
+
+    /* responsive */
+    @media (max-width:800px) {
+      .form-grid { flex-direction:column; }
+      .flight-card { flex-direction:column; align-items:flex-start; }
+      .flight-right { width:100%; align-items:flex-start; }
+      .header { flex-direction:column; gap:8px; align-items:flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .container { margin: 12px; }
+      .header { padding: 12px 16px; }
+      .steps { font-size: 12px; }
+      .step { padding: 6px 10px; }
+      main { padding: 16px; }
+      .form-grid { gap: 8px; }
+      .field { min-width: 100%; }
+      input[type="text"], input[type="email"], select, input[type="date"] { padding: 8px 10px; }
+      .btn { padding: 8px 12px; font-size: 14px; }
+      .flights { gap: 8px; }
+      .flight-card { padding: 10px; }
+      .flight-info { gap: 10px; }
+      .flight-meta { font-size: 12px; }
+      .price { font-size: 16px; }
+      .passenger { padding: 10px; gap: 10px; }
+      .passenger input { padding: 8px; }
+      .summary .row { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .final { flex-direction: column; gap: 8px; }
+    }
+
+    @media (max-width: 400px) {
+      .container { margin: 8px; }
+      .header { padding: 10px 12px; }
+      main { padding: 12px; }
+      .form-grid { gap: 6px; }
+      input[type="text"], input[type="email"], select, input[type="date"] { padding: 6px 8px; font-size: 14px; }
+      .btn { padding: 6px 10px; font-size: 13px; }
+      .flight-card { padding: 8px; }
+      .flight-info { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .flight-right { margin-top: 8px; }
+      .passenger { flex-direction: column; gap: 6px; }
+      .passenger input { width: 100%; }
+      .summary { gap: 8px; }
+      .final { gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <strong>YourAirlines</strong> — Booking
+      </div>
+      <div class="steps" aria-hidden="true">
+        <div id="step1badge" class="step active">1. Booking Details</div>
+        <div id="step2badge" class="step">2. Flights</div>
+        <div id="step3badge" class="step">3. Passenger</div>
+        <div id="step4badge" class="step">4. Summary</div>
+      </div>
+    </div>
+
+    <main>
+      <!-- STEP 1: Booking Details -->
+      <section id="step1" class="step-panel active">
+        <h3>Booking Details</h3>
+        <div class="form-grid">
+          <div class="field">
+            <label>From</label>
+            <input id="fromInput" type="text" placeholder="e.g. Manila" />
+          </div>
+          <div class="field">
+            <label>To</label>
+            <input id="toInput" type="text" placeholder="e.g. Barcelona" />
+          </div>
+          <div class="field">
+            <label>Flight Type</label>
+            <div class="radio-group">
+              <label><input type="radio" name="tripType" value="round" checked/> Round Trip</label>
+              <label><input type="radio" name="tripType" value="oneway" /> One Way</label>
+            </div>
+          </div>
+          <div class="field" id="departField">
+            <label>Depart Date</label>
+            <input id="departDate" type="date" />
+          </div>
+          <div class="field" id="returnField">
+            <label>Return Date</label>
+            <input id="returnDate" type="date" />
+          </div>
+          <div class="field">
+            <label>Passengers</label>
+            <select id="passengersSelect">
+              <option value="1">1 passenger</option>
+              <option value="2">2 passengers</option>
+              <option value="3">3 passengers</option>
+              <option value="4">4 passengers</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top:16px; display:flex; gap:12px;">
+          <button id="searchFlightsBtn" class="btn">Search Flights</button>
+          <a href="index.html" class="btn ghost" style="text-decoration:none; padding:10px 14px;">Back</a>
+        </div>
+      </section>
+
+      <!-- STEP 2: Flights -->
+      <section id="step2" class="step-panel">
+        <h3>Available Flights</h3>
+        <div id="flightsContainer" class="flights" aria-live="polite"></div>
+
+        <div style="margin-top:14px; display:flex; gap:12px;">
+          <button id="backToDetails" class="btn ghost">Back</button>
+          <button id="toPassengerBtn" class="btn" disabled>Continue to Passenger</button>
+        </div>
+      </section>
+
+      <!-- STEP 3: Passenger -->
+      <section id="step3" class="step-panel">
+        <h3>Passenger Information</h3>
+        <div id="passengersContainer"></div>
+
+        <div style="margin-top:14px; display:flex; gap:12px;">
+          <button id="backToFlights" class="btn ghost">Back</button>
+          <button id="toSummaryBtn" class="btn">Continue to Summary</button>
+        </div>
+      </section>
+
+      <!-- STEP 4: Summary -->
+      <section id="step4" class="step-panel">
+        <h3>Summary</h3>
+        <div class="summary" id="summaryContainer"></div>
+
+        <div class="final">
+          <div><strong>Total:</strong> <span id="totalPrice">₱0</span></div>
+          <div>
+            <button id="backToPassenger" class="btn ghost">Back</button>
+            <button id="bookNowFinal" class="btn">Book Now</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../js/booking.js"></script>
+</body>
+</html>
